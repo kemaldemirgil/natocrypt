@@ -1,0 +1,19 @@
+{
+  "name": "natocrypt",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kemaldemirgil/natocrypt.git"
+  },
+  "author": "gam3fac3",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kemaldemirgil/natocrypt/issues"
+  },
+  "homepage": "https://github.com/kemaldemirgil/natocrypt#readme"
+}
