@@ -1,7 +1,8 @@
 
 <p align="center">
-<img src="https://i.postimg.cc/Kz6kJ1gj/natocrypt-logo.png"/>
+  <img src="https://i.postimg.cc/Kz6kJ1gj/natocrypt-logo.png"/>
 </p>
+<img src="https://img.shields.io/npm/v/npm?color=red&logo=npm"/>
 
 
 > NATO phonetic alphabet password-hashing module
