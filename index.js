@@ -14,36 +14,40 @@ const nato = (letter) => {
   return nato_text;
 };
 
+const parse_data = (chars) => {
+  const nato_text = [];
+  chars.forEach((char) => {
+    nato_text.push(nato(char.toLowerCase()));
+  });
+  return nato_text.reverse().join("");
+};
+
+const hash_data = (chars) => {
+  let letter = "";
+  let word = [];
+  chars.forEach((char) => {
+    letter += char;
+    for (let key in nato_alphabet) {
+      if (nato_alphabet[key] === letter) {
+        word.push(key);
+        letter = "";
+      }
+      if (letter === "$") {
+        word.push(" ");
+        letter = "";
+      }
+    }
+  });
+  return word.reverse().join("");
+};
+
 class Natocrypt {
   encrypt(field) {
-    const character_list = field.split("");
-    const nato_text = [];
-    character_list.forEach((char) => {
-      nato_text.push(nato(char.toLowerCase()));
-    });
-    const encrypted_text = nato_text.reverse().join("");
-    return encrypted_text;
+    return parse_data(field.split(""));
   }
 
   decrypt(field) {
-    const character_list = field.split("");
-    let letter = "";
-    let word = [];
-    character_list.forEach((char) => {
-      letter += char;
-      for (let key in nato_alphabet) {
-        if (nato_alphabet[key] === letter) {
-          word.push(key);
-          letter = "";
-        }
-        if (letter === "$") {
-          word.push(" ");
-          letter = "";
-        }
-      }
-    });
-    const decrypted_text = word.reverse().join("");
-    return decrypted_text;
+    return hash_data(field.split(""));
   }
 }
 
