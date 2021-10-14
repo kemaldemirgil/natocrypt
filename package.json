@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --coverage",
+    "commit": "git-cz",
     "semantic-release": "semantic-release --branches main"
   },
   "repository": {
@@ -18,7 +19,13 @@
   },
   "homepage": "https://github.com/kemaldemirgil/natocrypt#readme",
   "devDependencies": {
+    "cz-conventional-changelog": "^3.3.0",
     "jest": "^27.2.5",
     "semantic-release": "^18.0.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
