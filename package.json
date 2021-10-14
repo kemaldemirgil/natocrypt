@@ -1,14 +1,15 @@
 {
   "name": "natocrypt",
-  "version": "1.0.2",
+  "version": "0.0.0-development",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "semantic-release": "semantic-release --branches main"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kemaldemirgil/natocrypt.git"
+    "url": "https://github.com/kemaldemirgil/natocrypt.git"
   },
   "author": "gam3fac3",
   "license": "MIT",
@@ -17,6 +18,7 @@
   },
   "homepage": "https://github.com/kemaldemirgil/natocrypt#readme",
   "devDependencies": {
-    "jest": "^27.2.5"
+    "jest": "^27.2.5",
+    "semantic-release": "^18.0.0"
   }
 }
