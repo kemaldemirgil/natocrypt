@@ -53,9 +53,9 @@ console.log(decryptedText)
 > hello world this is gameface
 ```
 
-### ❗ Only letters and spaces are available for now, other characters & numbers will not work.
-### ❗ All text will be lowercased.
-### ❗ A multiplier is required.
+#### ❗ Only letters and spaces are available for now, other characters & numbers will not work.
+#### ❗ All text will be lowercased.
+#### ❗ A multiplier is required.
 
 ## ©️License:
 Copyright © Kemal Demirgil. All rights reserved.
