@@ -42,13 +42,13 @@ const parse_data = (chars, multiplier) => {
 };
 
 /**
- * This function takes in an array of encrypted characters and returns back the
- * deprected string version.
+ * This function takes in a fully encrypted text and returns back the nato representation.
  *
- * @param {Array} chars
- * @returns {String}
+ * @param {String} chars
+ * @returns nato encrypted string
  */
-const hash_data = (chars, multiplier) => {
+
+const get_characters = (chars) => {
   let letter = "";
   let word = [];
   for (let q = 0; q < chars.length; q++) {
@@ -64,19 +64,52 @@ const hash_data = (chars, multiplier) => {
       }
     }
   }
+  return word;
+};
 
-  let final_word = [];
-  for (let p = 0; p < word.length; p++) {
-    p = p + multiplier;
-    final_word.push(word[p]);
-  }
+/**
+ * This function takes in an array and returns back the first letter of each word.
+ *
+ * @param {Array} words
+ * @returns Decrypted string
+ */
 
-  let word2 = [];
-  final_word.forEach((char) => {
-    word2.push(char.charAt(0));
+const build_string = (words) => {
+  let final_words = [];
+  words.forEach((char) => {
+    final_words.push(char.charAt(0));
   });
+  return final_words.join("");
+};
 
-  return word2.join("");
+/**
+ * This function takes in an array of nato decrypted words and multiplies with the multiplier.
+ *
+ * @param {Array} words
+ * @param {Number} multiplier
+ * @returns nato representation of text
+ */
+
+const final_string = (words, multiplier) => {
+  let final_words = [];
+  for (let p = 0; p < words.length; p++) {
+    p = p + multiplier;
+    final_words.push(words[p]);
+  }
+  return final_words;
+};
+
+/**
+ * This function takes in an array of encrypted characters and returns back the
+ * deprected string version.
+ *
+ * @param {Array} chars
+ * @returns {String}
+ */
+const hash_data = (chars, multiplier) => {
+  let words = get_characters(chars);
+  let final_words = final_string(words, multiplier);
+  return build_string(final_words);
 };
 
 /**
