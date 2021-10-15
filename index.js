@@ -1,8 +1,8 @@
-const nato_alphabet = require("./utils/nato");
+let { nato_alphabet, nato_characters } = require("./utils/nato");
 
 /**
  * This function takes in a character and returns
- * back the nato alphabet representataion of if
+ * back the nato alphabet representation.
  *
  * @param {String} letter
  * @returns {Array}
@@ -28,12 +28,17 @@ const nato = (letter) => {
  * @param {Array} chars
  * @returns {String}
  */
-const parse_data = (chars) => {
+const parse_data = (chars, multiplier) => {
   const nato_text = [];
   chars.forEach((char) => {
+    for (let i = 0; i < multiplier; i++) {
+      let random_nato =
+        nato_characters[Math.floor(Math.random() * nato_characters.length)];
+      nato_text.push(random_nato);
+    }
     nato_text.push(nato(char.toLowerCase()));
   });
-  return nato_text.reverse().join("");
+  return nato_text.join("");
 };
 
 /**
@@ -43,14 +48,14 @@ const parse_data = (chars) => {
  * @param {Array} chars
  * @returns {String}
  */
-const hash_data = (chars) => {
+const hash_data = (chars, multiplier) => {
   let letter = "";
   let word = [];
-  chars.forEach((char) => {
-    letter += char;
-    for (let key in nato_alphabet) {
-      if (nato_alphabet[key] === letter) {
-        word.push(key);
+  for (let q = 0; q < chars.length; q++) {
+    letter += chars[q];
+    for (let i = 0; i < nato_characters.length; i++) {
+      if (nato_characters[i] === letter) {
+        word.push(letter);
         letter = "";
       }
       if (letter === "$") {
@@ -58,8 +63,20 @@ const hash_data = (chars) => {
         letter = "";
       }
     }
+  }
+
+  let final_word = [];
+  for (let p = 0; p < word.length; p++) {
+    p = p + multiplier;
+    final_word.push(word[p]);
+  }
+
+  let word2 = [];
+  final_word.forEach((char) => {
+    word2.push(char.charAt(0));
   });
-  return word.reverse().join("");
+
+  return word2.join("");
 };
 
 /**
@@ -72,8 +89,8 @@ class Natocrypt {
    * @param {String} field
    * @returns {String}
    */
-  encrypt(field) {
-    return parse_data(field.split(""));
+  encrypt(field, multiplier) {
+    return parse_data(field.split(""), multiplier);
   }
 
   /**
@@ -82,8 +99,8 @@ class Natocrypt {
    * @param {String} field
    * @returns {String}
    */
-  decrypt(field) {
-    return hash_data(field.split(""));
+  decrypt(field, multiplier) {
+    return hash_data(field.split(""), multiplier);
   }
 }
 

@@ -49,4 +49,33 @@ const nato_alphabet = {
   "!": "!",
 };
 
-module.exports = nato_alphabet;
+const nato_characters = [
+  "alpha",
+  "bravo",
+  "charlie",
+  "delta",
+  "echo",
+  "foxtrot",
+  "golf",
+  "hotel",
+  "india",
+  "juliet",
+  "kilo",
+  "lima",
+  "mike",
+  "november",
+  "oscar",
+  "papa",
+  "quebec",
+  "romeo",
+  "sierra",
+  "tango",
+  "uniform",
+  "viktor",
+  "whiskey",
+  "xray",
+  "yankee",
+  "zulu",
+];
+
+module.exports = { nato_alphabet, nato_characters };
