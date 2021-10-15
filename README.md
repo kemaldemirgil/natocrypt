@@ -20,7 +20,10 @@ npm install natocrypt
 ## 📜Usage:
 There are only 2 methods available.
 ```js
-encrypt(text, multiplier) & decrypt(text, multiplier)
+encrypt(text, multiplier)
+```
+```js
+decrypt(text, multiplier)
 ```
 
 ```javaScript
