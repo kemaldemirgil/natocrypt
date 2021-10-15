@@ -7,20 +7,20 @@
 
 > NATO phonetic alphabet password-hashing module
 
-Natocrypt was created to convert your text into a NATO phonetic alphabet hash with a little more encryption. It does not provide a fully secure encryption, it was made for simplicity and basic usage. \
-It basically uses each letter representation with a reversed format. Some characters and capital letters are not yet supported.
+## 💠About:
+
+Natocrypt was created to convert your text into a NATO phonetic alphabet hash. It does not provide a fully secure encryption, it was made for simplicity and basic usage. \
 
 This package is open to contributions.
 
-
-## Installation:
+## 🔧Installation:
 ```console
 npm install natocrypt
 ```
-## Usage:
+## 📜Usage:
 There are only 2 methods available.
 ```js
-encrypt() & decrypt()
+encrypt(text, multiplier) & decrypt(text, multiplier)
 ```
 
 ```javaScript
@@ -30,18 +30,31 @@ Init Natocrypt
 ```javaScript
 const nato = new Natocrypt();
 ```
-Encrypt a text
+## 🔒Encrypt a text
 ```javaScript
-nato.encrypt("very secret text")
-> tangoxrayechotango$tangoechoromeocharlieechosierra$yankeeromeoechoviktor
+const text = "hello world this is gameface"
+const multiplier = 50
+const encryptedText = nato.encrypt(text, multiplier)
+
+console.log(encryptedText)
+> mikelimanovembersierraviktorcharliehoteloscargolfbravojulietindiafoxtrotechoxraypapauniformfoxtrotkilodeltalimabravoalphaxrayfoxtrotwhiskeylimalimajulietecholimatangoxrayindiaoscarbravoxrayyankeequebecjulietjuliet$oscarfoxtrotechozulualphaoscarwhiskeypapauniformfoxtrotpapacharliebravooscartangoviktorzulusierratangowhiskeyromeooscarzulufoxtrotromeoechokilolimabravocharliequebecnovemberpapatangodeltawhiskeywhiskeysierrajulietzuluoscar$charliecharlieoscarhoteldeltapapatangozuluzuluuniformnovembergolfcharliehotelkiloxrayquebeckilojulietpapaindiahotelmikeviktorromeosierrauniformsierraxrayquebecjulietviktortangoalpha$quebecindiadeltamikehotelindiaindiaechocharliepapacharliezulukilosierradeltaromeowhiskeyindiamikenovember$quebecquebecdeltanovembernovemberfoxtrotgolflimaxrayquebecdeltawhiskeyromeoalphakilosierrajulietwhiskeyechoyankeemikeoscarfoxtrotviktorbravopapaalphaechoyankeemikepapasierrakiloviktorfoxtrotxraybravozulupapajulietindiaalphacharliezuluzulualphadeltatangocharliepapagolfnovembertangogolfromeoecho
 ```
-Decrypt a text
+## 🔓Decrypt a text
 ```javaScript
-nato.decrypt("tangoxrayechotango$tangoechoromeocharlieechosierra$yankeeromeoechoviktor")
-> very secret text
+const hashedText = "mikelimanovembersierraviktorcharliehoteloscargolfbravojulietindiafoxtrotechoxraypapauniformfoxtrotkilodeltalimabravoalphaxrayfoxtrotwhiskeylimalimajulietecholimatangoxrayindiaoscarbravoxrayyankeequebecjulietjuliet$oscarfoxtrotechozulualphaoscarwhiskeypapauniformfoxtrotpapacharliebravooscartangoviktorzulusierratangowhiskeyromeooscarzulufoxtrotromeoechokilolimabravocharliequebecnovemberpapatangodeltawhiskeywhiskeysierrajulietzuluoscar$charliecharlieoscarhoteldeltapapatangozuluzuluuniformnovembergolfcharliehotelkiloxrayquebeckilojulietpapaindiahotelmikeviktorromeosierrauniformsierraxrayquebecjulietviktortangoalpha$quebecindiadeltamikehotelindiaindiaechocharliepapacharliezulukilosierradeltaromeowhiskeyindiamikenovember$quebecquebecdeltanovembernovemberfoxtrotgolflimaxrayquebecdeltawhiskeyromeoalphakilosierrajulietwhiskeyechoyankeemikeoscarfoxtrotviktorbravopapaalphaechoyankeemikepapasierrakiloviktorfoxtrotxraybravozulupapajulietindiaalphacharliezuluzulualphadeltatangocharliepapagolfnovembertangogolfromeoecho"
+const multiplier = 50
+const decryptedText = nato.decrypt(hashedText, multiplier)
+
+
+console.log(decryptedText)
+> hello world this is gameface
 ```
 
-## License:
+### ❗ Only letters and spaces are available for now, other characters & numbers will not work.
+### ❗ All text will be lowercased.
+### ❗ A multiplier is required.
+
+## ©️License:
 Copyright © Kemal Demirgil. All rights reserved.
 Licensed under the [MIT](https://github.com/kemaldemirgil/natocrypt/blob/main/LICENSE) license.
 
