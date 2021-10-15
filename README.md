@@ -9,7 +9,7 @@
 
 ## 💠About:
 
-Natocrypt was created to convert your text into a NATO phonetic alphabet hash. It does not provide a fully secure encryption, it was made for simplicity and basic usage. \
+Natocrypt was created to convert your text into a NATO phonetic alphabet hash. It does not provide a fully secure encryption, it was made for simplicity and basic usage.
 
 This package is open to contributions.
 
