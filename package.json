@@ -7,7 +7,9 @@
     "test": "jest --coverage",
     "commit": "git-cz",
     "semantic-release": "semantic-release --branches main",
-    "arc": "git status && git add . && npm run commit && git push"
+    "arc": "git status && git add . && npm run commit && git push",
+    "build": "tsc",
+    "dev": "nodemon --exec ts-node index.ts"
   },
   "repository": {
     "type": "git",
@@ -29,9 +31,13 @@
   },
   "homepage": "https://github.com/kemaldemirgil/natocrypt#readme",
   "devDependencies": {
+    "@types/node": "^16.11.1",
     "cz-conventional-changelog": "^3.3.0",
     "jest": "^27.2.5",
-    "semantic-release": "^18.0.0"
+    "nodemon": "^2.0.13",
+    "semantic-release": "^18.0.0",
+    "ts-node": "^10.3.0",
+    "typescript": "^4.4.4"
   },
   "config": {
     "commitizen": {
