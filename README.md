@@ -3,6 +3,8 @@
 </p>
 <img src="https://img.shields.io/npm/v/npm?color=red&logo=npm"/>
 
+[![NPM](https://nodei.co/npm/natocrypt.png)](https://nodei.co/npm/natocrypt/)
+
 > A simple library for hashing passwords or text.
 
 - Very simple and easy encryption
