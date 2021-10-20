@@ -1,7 +1,7 @@
 {
   "name": "natocrypt",
   "version": "0.0.0-development",
-  "description": "",
+  "description": "A simple encryption library for NodeJS.",
   "main": "index.js",
   "scripts": {
     "test": "jest --coverage",
@@ -22,7 +22,8 @@
     "authentication",
     "encryption",
     "crypt",
-    "crypto"
+    "crypto",
+    "morse"
   ],
   "author": "gam3fac3",
   "license": "MIT",

@@ -1,4 +1,5 @@
 let { nato_alphabet_list, nato_characters } = require("./utils/nato");
+let { morse_characters } = require("./utils/morse");
 
 /**
  * This function takes in a character and returns
@@ -124,6 +125,61 @@ const hash_data = (chars: string, multiplier: number) => {
 };
 
 /**
+ * This function takes in a normal text and returns back an encrypted morse value of it.
+ *
+ * @param {Array} field
+ * @param {Number} multiplier
+ * @returns
+ */
+const morse_encrypt = (field: string[], multiplier: number) => {
+  let morse_text: string[] = [];
+  field.forEach((char) => {
+    for (let i = 0; i < multiplier; i++) {
+      let random_morse = random_property(morse_characters);
+      morse_text.push(random_morse);
+    }
+    for (let key in morse_characters) {
+      if (key == char) {
+        morse_text.push(morse_characters[key]);
+      }
+    }
+    if (char === " ") {
+      morse_text.push("~");
+    }
+  });
+  const x = morse_text.push(morse_characters[`${multiplier}`]);
+  return morse_text.join(" ");
+};
+
+/**
+ * This function takes in a morse encrypted text and returns back an decrypted text value of it.
+ *
+ * @param {String} field
+ * @returns
+ */
+const morse_decrypt = (field: string) => {
+  const morse_text: string[] = [];
+  field.split(" ").forEach((char) => {
+    if (char === "~") {
+      morse_text.push(" ");
+    } else {
+      for (let key in morse_characters) {
+        if (morse_characters[key] == char) {
+          morse_text.push(key);
+        }
+      }
+    }
+  });
+  const multiplier = morse_text.pop();
+  let final_words = [];
+  for (let i = 0; i < morse_text.length - 1; i++) {
+    i = i + Number(multiplier);
+    final_words.push(morse_text[i]);
+  }
+  return final_words.join("");
+};
+
+/**
  * This function generates a random multiplier value between the givin min and max values.
  *
  * @param {Number} min
@@ -133,6 +189,11 @@ const hash_data = (chars: string, multiplier: number) => {
 
 const random_multiplier = (min: number, max: number) => {
   return Math.floor(Math.random() * (max - min + 1) + min);
+};
+
+var random_property = function (obj: any) {
+  var keys = Object.keys(obj);
+  return obj[keys[(keys.length * Math.random()) << 0]];
 };
 
 interface Hash {
@@ -174,6 +235,26 @@ class Natocrypt {
    */
   compare(plain_text: string, hash: Hash) {
     return plain_text === hash_data(hash.field, hash.multiplier);
+  }
+
+  /**
+   * Morse method with encryption and decryption options. A multiplier value is optional.
+   *
+   * @param {String} type
+   * @param {String} field
+   * @param {Number} multiplier
+   * @returns
+   */
+  morse(
+    type: string,
+    field: string,
+    multiplier: number = random_multiplier(1, 10)
+  ) {
+    if (type === "encrypt" && field) {
+      return morse_encrypt(field.split(""), multiplier);
+    } else if (type == "decrypt" && field) {
+      return morse_decrypt(field);
+    }
   }
 }
 

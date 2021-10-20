@@ -1,5 +1,6 @@
 "use strict";
 let { nato_alphabet_list, nato_characters } = require("./utils/nato");
+let { morse_characters } = require("./utils/morse");
 /**
  * This function takes in a character and returns
  * back the nato alphabet representation.
@@ -107,10 +108,64 @@ const final_string = (words, multiplier) => {
  * @returns {String}
  */
 const hash_data = (chars, multiplier) => {
-    const x = chars.split("");
-    let words = get_characters(x);
+    const char_list = chars.split("");
+    let words = get_characters(char_list);
     let final_words = final_string(words, multiplier);
     return build_string(final_words);
+};
+/**
+ * This function takes in a normal text and returns back an encrypted morse value of it.
+ *
+ * @param {Array} field
+ * @param {Number} multiplier
+ * @returns
+ */
+const morse_encrypt = (field, multiplier) => {
+    let morse_text = [];
+    field.forEach((char) => {
+        for (let i = 0; i < multiplier; i++) {
+            let random_morse = random_property(morse_characters);
+            morse_text.push(random_morse);
+        }
+        for (let key in morse_characters) {
+            if (key == char) {
+                morse_text.push(morse_characters[key]);
+            }
+        }
+        if (char === " ") {
+            morse_text.push("~");
+        }
+    });
+    const x = morse_text.push(morse_characters[`${multiplier}`]);
+    return morse_text.join(" ");
+};
+/**
+ * This function takes in a morse encrypted text and returns back an decrypted text value of it.
+ *
+ * @param {String} field
+ * @returns
+ */
+const morse_decrypt = (field) => {
+    const morse_text = [];
+    field.split(" ").forEach((char) => {
+        if (char === "~") {
+            morse_text.push(" ");
+        }
+        else {
+            for (let key in morse_characters) {
+                if (morse_characters[key] == char) {
+                    morse_text.push(key);
+                }
+            }
+        }
+    });
+    const multiplier = morse_text.pop();
+    let final_words = [];
+    for (let i = 0; i < morse_text.length - 1; i++) {
+        i = i + Number(multiplier);
+        final_words.push(morse_text[i]);
+    }
+    return final_words.join("");
 };
 /**
  * This function generates a random multiplier value between the givin min and max values.
@@ -121,6 +176,10 @@ const hash_data = (chars, multiplier) => {
  */
 const random_multiplier = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1) + min);
+};
+var random_property = function (obj) {
+    var keys = Object.keys(obj);
+    return obj[keys[(keys.length * Math.random()) << 0]];
 };
 /**
  * Natocrypt Class has two methods; encrypt and decrypt.
@@ -154,6 +213,22 @@ class Natocrypt {
      */
     compare(plain_text, hash) {
         return plain_text === hash_data(hash.field, hash.multiplier);
+    }
+    /**
+     * Morse method with encryption and decryption options. A multiplier value is optional.
+     *
+     * @param {String} type
+     * @param {String} field
+     * @param {Number} multiplier
+     * @returns
+     */
+    morse(type, field, multiplier = random_multiplier(1, 10)) {
+        if (type === "encrypt" && field) {
+            return morse_encrypt(field.split(""), multiplier);
+        }
+        else if (type == "decrypt" && field) {
+            return morse_decrypt(field);
+        }
     }
 }
 module.exports = Natocrypt;
